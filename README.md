@@ -25,9 +25,10 @@ When you have finished downloading the application , unzip it in the directory "
 
 #### Directory Permissions ####
 
-You must first of all, change the directory cache/ and log/ so that the application can embeded:
+First, look for the cache/ and log/ directories in the application root, alongside web/, src/, etc.  If they do not exist (e.g. if you are cloning the git repository) you must create them.  Either way, you must then set their permissions:
 
 ```
+mkdir -p cache log
 chmod 777 cache/ log/
 ```
 
@@ -62,9 +63,11 @@ NameVirtualHost 127.0.0.1:80
 </VirtualHost>
 ```
 
+Make sure that mod_rewrite is installed and enabled.
+
 Restart Apache, so the modifications can be reloaded.
 
-From the server , open a browser and type in the address bar http://localhost/ . You arrive at the login screen of the application.
+From the server, open a browser and type in the address bar http://localhost/ . You arrive at the login screen of the application.  Do not try to log in yet.
 
 #### PHP #### 
 
@@ -76,7 +79,7 @@ mbstring.internal_encoding  = UTF-8
 mbstring.http_input = auto
 mbstring.http_output = UTF-8
 
-mbstring.encoding_translation = On (Si la version de PHP < 5.4)
+mbstring.encoding_translation = On ; (If you are using a version of PHP < 5.4)
 mbstring.detect_order = auto
 mbstring.substitute_character = none
 
@@ -121,9 +124,11 @@ This means that FFMPEG does support the essential OpenDam modules.
 
 #### MySql #### 
 
-To create the database , run the file located in ```config/data/database.sql```.
+To create the database , run the file located in ```config/data/database.sql```, e.g. ```mysql -u root -p < config/data/database.sql```.  This will create a new database "opendam" and install the schema and initial content.
 
-Then edit the ```config/databses.yml``` file and change the SQL as well as the login and password (```myHost```, ```myDatabase```, ```myUsername``` et ```myPassword``).
+You will then need to create the database user and set its permissions yourself.
+
+Then edit the ```config/databses.yml``` file and change the SQL as well as the login and password (```myHost```, ```myDatabase```, ```myUsername``` and ```myPassword```).
 
 ```
 all:
@@ -147,8 +152,12 @@ php symfony cc
 ```
 
 ## Use ##
+
 The application contains a default set of tests to show you a taste of OpenDam solution.
-To log on, simply enter an email (```john.doe@opendam.org```) et un mot de passe (```opendam```).
+
+A default admin user has been created for you.  Enter the email ```john.doe@opendam.org``` and password ```opendam``` to log in.  
+
+From there, you should create your own (real) admin user and delete the default user or change its password.
 
 
 
