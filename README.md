@@ -2,11 +2,13 @@
 
 ## What ##
 
-OpenDAM is an open source digital asset management platform to centralize , organize , manage and share picture and video files.
+OpenDAM is an Open-source digital asset management platform to centralize, organize , manage and share picture and video files.
 
 For more information, please visit [Wikipixel](http://wikipixel.com/)
 
-Forum: [Wikipixel](http://wikipixel.forumbee.com/)
+Forum: [Forum](http://wikipixel.forumbee.com/)
+
+Translate OpenDAM to your language: [Start now](http://crowdin.net/project/opendam/)
 
 ##  System requirements ##
 
