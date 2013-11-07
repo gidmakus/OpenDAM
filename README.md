@@ -128,7 +128,7 @@ To create the database , run the file located in ```config/data/database.sql```,
 
 You will then need to create the database user and set its permissions yourself.
 
-Then edit the ```config/databses.yml``` file and change the SQL as well as the login and password (```myHost```, ```myDatabase```, ```myUsername``` et ```myPassword``).
+Then edit the ```config/databses.yml``` file and change the SQL as well as the login and password (```myHost```, ```myDatabase```, ```myUsername``` and ```myPassword```).
 
 ```
 all:
