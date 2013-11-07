@@ -6,6 +6,8 @@ OpenDAM is an open source digital asset management platform to centralize , orga
 
 For more information, please visit [Wikipixel](http://wikipixel.com/)
 
+Forum: [Wikipixel](http://wikipixel.forumbee.com/)
+
 ##  System requirements ##
 
 The OpenDam application requires :
