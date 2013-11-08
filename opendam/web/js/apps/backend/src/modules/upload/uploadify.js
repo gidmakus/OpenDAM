@@ -17,7 +17,7 @@
 		var dataArray = [];
 		var uploadArray = [];
 		var countFiles = 1;
-		const BYTES_PER_CHUNK = 1024 * 1024;
+		var BYTES_PER_CHUNK = 1024 * 1024;
 		var slices;
 		var slices2;
 
