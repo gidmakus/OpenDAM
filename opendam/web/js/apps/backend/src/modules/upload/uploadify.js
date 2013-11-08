@@ -232,11 +232,16 @@
 			var html = object.html;
 			var name = object.name;
 
-			if (file.webkitSlice) {
+			if ( file.slice) {
+				chunk = file.slice(start, end);
+			}
+			else if (file.webkitSlice) {
 				chunk = file.webkitSlice(start, end);
 			}
 			else if (file.mozSlice) {
 				chunk = file.mozSlice(start, end);
+			} else {
+				throw "No supported file-slicing method was found.  :-("
 			}
 
 			fd = new FormData();
