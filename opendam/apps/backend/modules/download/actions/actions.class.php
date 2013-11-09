@@ -31,7 +31,7 @@ class downloadActions extends sfActions
 		if($file->getUsageDistributionId() == UsageDistributionPeer::__UNAUTH)
 			$this->redirect404();
 
-		$path = $file->getPath();
+		$path = $file->getPath().DIRECTORY_SEPARATOR;
 
 		switch ($this->getRequestParameter("definition"))
 		{
@@ -56,15 +56,14 @@ class downloadActions extends sfActions
 		// download single file
 		$path.=$filename;
 
-		if(file_exists($path))
-		{
-			$download = new Httpdownload();
-			$download->setInline(false);
-			$download->setFilePath($path);
-			$download->setFilename($filename);
-			$download->executeDownload();
-		}
-
+                $this->forward404Unless(file_exists($path));
+ 
+                $download = new Httpdownload();
+                $download->setInline(false);
+                $download->setFilePath($path);
+                $download->setFilename($filename);
+                $download->executeDownload();
+  
 		return sfView::NONE;
 	}
 
