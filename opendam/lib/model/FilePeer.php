@@ -3478,41 +3478,6 @@ class FilePeer extends BaseFilePeer
 				$idsFields = processFileIndex($searchOperator, $temp);
 
 				/**
-					Search person.
-
-					Search on PERSON.NAME
-				**/
-				$temp = Array();
-				foreach($searchExpression as $searchTerm)
-				{
-					$temp[$searchTerm] = Array();
-
-					$query = "	SELECT distinct file.id
-								FROM file, groupe, file_person, person
-								WHERE groupe.id = file.groupe_id
-								AND file.id = file_person.file_id
-								AND file_person.person_id = person.id
-								AND file.state IN (".implode($states, ",").")
-								AND groupe.customer_id = ".$customerId."
-								AND groupe.state = ".GroupePeer::__STATE_ACTIVE."
-								AND person.name LIKE '".$searchTerm."'";
-
-					$statement = $connection->query($query);
-					$statement->setFetchMode(PDO::FETCH_ASSOC);
-
-					while($rs = $statement->fetch())
-					{
-						if(!in_array($rs["id"], $temp[$searchTerm]))
-							$temp[$searchTerm][] = $rs["id"];
-					}
-
-					$statement->closeCursor();
-					$statement = null;
-				}
-
-				$idsPersons = processFileIndex($searchOperator, $temp);
-
-				/**
 					Search geolocation.
 
 					Search on GEOLOCATION_I18N.VALUE
@@ -3549,7 +3514,7 @@ class FilePeer extends BaseFilePeer
 
 				$idsGeolocations = processFileIndex($searchOperator, $temp);
 
-				$ids = array_merge($ids, $idsTags, $idsFiles, $idsFields, $idsPersons, $idsGeolocations);
+				$ids = array_merge($ids, $idsTags, $idsFiles, $idsFields, $idsGeolocations);
 
 				if(empty($ids))
 					$ids[] = -1;
