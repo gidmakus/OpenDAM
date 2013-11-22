@@ -13,7 +13,7 @@
 
 			<br clear="all" />
 
-			<input type="text" class="input_permalink" value="<?php echo 'https://'.$_SERVER['SERVER_NAME'].'/p/'.$permalink_original->getLink(); ?>" style="float: left; width: 210px; margin-top: 3px;" />
+			<input type="text" class="input_permalink" value="<?php echo url("permalink_show", array("link" => $permalink_original->getLink())); ?>" style="float: left; width: 210px; margin-top: 3px;" />
 
 			<?php if($file->getType() == FilePeer::__TYPE_PHOTO && $permalink_web) : ?>
 				<?php if($file->existsThumbWeb()) : ?>
@@ -24,7 +24,7 @@
 
 					<br clear="all" />
 
-					<input type="text" class="input_permalink" value="<?php echo 'https://'.$_SERVER['SERVER_NAME'].'/p/'.$permalink_web->getLink(); ?>" style="float: left; width: 210px; margin-top: 3px;" />
+					<input type="text" class="input_permalink" value="<?php echo url("permalink_show", array("link" => $permalink_web->getLink())); ?>" style="float: left; width: 210px; margin-top: 3px;" />
 				<?php endif; ?>
 			<?php endif; ?>
 
