@@ -9,7 +9,7 @@
 			$absolute = $file->getThumbTabPathname();
 		}
 
-		$properties .= " data-srcTab = '".spath("@file_thumbnail", array("id" => $file->getId(), "format" => "tab"))."' ";
+		$properties .= " data-srcTab = '".path("@file_thumbnail", array("id" => $file->getId(), "format" => "tab"))."' ";
 	}
 
 	if ($file->existsThumbMob()) {
