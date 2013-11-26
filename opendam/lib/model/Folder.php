@@ -92,12 +92,21 @@ class Folder extends BaseFolder
 
 	public function getPathToSave($absolute = true)
 	{
-		if($absolute)
+		if (!$this->getDiskId()) {
+			$user = sfContext::getInstance()->getUser();
+
+			$this->setDiskId($user->getDisk()->getId());
+			$this->save();
+		}
+
+		if ($absolute) {
 			return sfConfig::get("app_path_upload_dir")."/".$this->getDisk()->getPath()."/cust-".
-			$this->getCustomerId()."/folder-".$this->getId();
-		else
+					$this->getCustomerId()."/folder-".$this->getId();
+		}
+		else {
 			return sfConfig::get("app_path_upload_dir_name")."/".$this->getDisk()->getPath()."/cust-".
-			$this->getCustomerId()."/folder-".$this->getId();
+					$this->getCustomerId()."/folder-".$this->getId();
+		}
 	}
 
 	/*________________________________________________________________________________________________________________*/
