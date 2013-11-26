@@ -13,6 +13,7 @@ class fileActions extends sfActions
 	public function preExecute()
 	{
 		sfContext::getInstance()->getConfiguration()->loadHelpers("I18N");
+		sfContext::getInstance()->getConfiguration()->loadHelpers("Url");
 	}
 	
 	/**
@@ -661,7 +662,7 @@ class fileActions extends sfActions
 				$this->getUser()->setFlash("success", "The selected files removed successfully.", false);
 			}
 	
-			$this->uri = 'folder/show?id='.$folder->getId();
+			$this->uri = url_for('folder/show?id='.$folder->getId(), true);
 			$this->setTemplate("thankyou");
 		}
 	
@@ -797,7 +798,7 @@ class fileActions extends sfActions
 			}
 	
 	
-			$this->uri = 'folder/show?id='.$folder->getId();
+			$this->uri = url_for('folder/show?id='.$folder->getId(), true);
 			$this->setTemplate("thankyou");
 		}
 	
@@ -892,7 +893,7 @@ class fileActions extends sfActions
 	
 	$this->getUser()->setFlash("success", __("The selected files moved successfully."), false);
 	//return $this->redirect('folder/show?id='.$this->getRequestParameter("folder_id1"));
-	$this->uri = 'folder/show?id='.$this->getRequestParameter("folder_id1");
+	$this->uri = url_for('folder/show?id='.$this->getRequestParameter("folder_id1"), true);
 	$this->setTemplate("thankyou");
 	}
 	
@@ -994,7 +995,7 @@ class fileActions extends sfActions
 	
 	$this->getUser()->setFlash("success", __("The selected files copied successfully."), false);
 	//return $this->redirect('folder/show?id='.$this->getRequestParameter("folder_id1"));
-	$this->uri = 'folder/show?id='.$this->getRequestParameter("folder_id1");
+	$this->uri = url_for('folder/show?id='.$this->getRequestParameter("folder_id1"), true);
 	$this->setTemplate("thankyou");
 	}
 	
@@ -1074,7 +1075,7 @@ class fileActions extends sfActions
 	
 	$this->getUser()->setFlash("success", __("File moved successfully."), false);
 	
-	$this->uri = 'folder/show?id='.$this->getRequestParameter("folder_id1");
+	$this->uri = url_for('folder/show?id='.$this->getRequestParameter("folder_id1"), true);
 	$this->setTemplate("thankyou");
 	}
 	
@@ -1159,7 +1160,7 @@ class fileActions extends sfActions
 	
 	$this->getUser()->setFlash("success", __("File copied successfully."), false);
 	
-	$this->uri = 'folder/show?id='.$this->getRequestParameter("folder_id1");
+	$this->uri = url_for('folder/show?id='.$this->getRequestParameter("folder_id1"), true);
 	$this->setTemplate("thankyou");
 	}
 	
@@ -1221,7 +1222,7 @@ class fileActions extends sfActions
 	
 	LogPeer::setLog($this->getUser()->getId(), 0, "files-edit", "3", $file_ids);
 	
-	$this->uri = 'folder/show?id='.$folder->getId();
+	$this->uri = url_for('folder/show?id='.$folder->getId(), true);
 	$this->setTemplate('thankyou');
 	}
 	
@@ -1440,7 +1441,7 @@ class fileActions extends sfActions
 	
 				LogPeer::setLog($this->getUser()->getId(), $file->getId(), "file-email", "3");
 	
-				$this->uri = 'file/show?id='.$file->getId()."&folder_id=".$file->getFolderId();
+				$this->uri = url_for('file/show?id='.$file->getId()."&folder_id=".$file->getFolderId(), true);
 				$this->setTemplate('thankyou');
 			}
 		}
@@ -1455,7 +1456,7 @@ class fileActions extends sfActions
 			$this->forward404();
 		}
 	
-	$this->uri = "file/show?id=".$this->getRequestParameter("id")."&folder_id=".$this->getRequestParameter("folder_id");
+	$this->uri = url_for("file/show?id=".$this->getRequestParameter("id")."&folder_id=".$this->getRequestParameter("folder_id"), true);
 		$this->setTemplate('thankyou'); 
 	}
 	
@@ -1533,7 +1534,7 @@ class fileActions extends sfActions
 				//Restore the oldest one
 				@rename($temp, $path.$original);
 	
-				$this->uri = "file/show?id=".$file->getId()."&folder_id=".$file->getFolderId();
+				$this->uri = url_for("file/show?id=".$file->getId()."&folder_id=".$file->getFolderId(), true);
 				$this->setTemplate('thankyou');
 			}
 		}
@@ -2184,7 +2185,7 @@ class fileActions extends sfActions
 				$email->compose($search, $replace);
 				$email->send();
 	
-				$this->uri = url_for('file/show?id='.$file->getId()."&folder_id=".$file->getFolderId());
+				$this->uri = url_for('file/show?id='.$file->getId()."&folder_id=".$file->getFolderId(), true);
 				$this->setTemplate('thankyou');
 			}
 		}
@@ -2366,7 +2367,7 @@ class fileActions extends sfActions
 	
 				LogPeer::setLog($this->getUser()->getId(), 0, "files-edit", "3", $files_array);
 	
-				$this->uri = 'folder/show?id='.$folder->getId();
+				$this->uri = url_for('folder/show?id='.$folder->getId(), true);
 				$this->setTemplate('thankyou');
 			}
 		}

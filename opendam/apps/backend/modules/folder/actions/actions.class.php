@@ -285,7 +285,7 @@ class folderActions extends sfActions
 				if($this->form->getValue("redirect"))
 					$this->redirect(url_for("upload/uploadify?folder_id=".$folder->getId()."&navigation=create&mode=normal"));
 	
-				$this->uri = ($this->form->getValue("inside") || $this->form->getValue('subfolder')) ? url_for('folder/show?id='.$folder->getId()) : url_for('group/show?id='.$folder->getGroupeId());
+				$this->uri = ($this->form->getValue("inside") || $this->form->getValue('subfolder')) ? url_for('folder/show?id='.$folder->getId(), true) : url_for('group/show?id='.$folder->getGroupeId(), true);
 				$this->setTemplate('thankyou');
 			}
 		}
@@ -368,7 +368,7 @@ class folderActions extends sfActions
 	
 			$this->getUser()->setFlash("success", __("The folder is deleted successfully."), false);
 	
-			$this->uri = 'group/show?id='.$group_id;
+			$this->uri = url_for('group/show?id='.$group_id, true);
 			$this->setTemplate('thankyou');
 		}
 	
@@ -423,7 +423,7 @@ class folderActions extends sfActions
 	
 		$this->getUser()->setFlash("success", __("The folder is moved successfully."), false);
 	
-		$this->uri = "folder/show?id=".$folder->getId();
+		$this->uri = url_for("folder/show?id=".$folder->getId(), true);
 		$this->setTemplate('thankyou');
 		}
 	
@@ -1263,7 +1263,7 @@ class folderActions extends sfActions
 
 				$this->getUser()->setFlash("success", __("Folder information has updated successfully."), true);
 
-				$this->uri = url_for('folder/show?id='.$folder->getId());
+				$this->uri = url_for('folder/show?id='.$folder->getId(), true);
 				$this->setTemplate('thankyou');
 			}
 		}
@@ -1387,7 +1387,7 @@ class folderActions extends sfActions
 					$folder->save();
 				}
 
-				$this->uri = 'folder/show?id='.$folder->getId();
+				$this->uri = url_for('folder/show?id='.$folder->getId(), true);
 				$this->setTemplate("thankyouUri");
 			}
 		}
@@ -1757,7 +1757,7 @@ class folderActions extends sfActions
 
 				$this->getUser()->setFlash("success", __("Recursively change successfully applied."), true);
 
-				$this->uri = url_for('folder/show?id='.$folder->getId());
+				$this->uri = url_for('folder/show?id='.$folder->getId(), true);
 				$this->setTemplate('thankyou');
 			}
 		}

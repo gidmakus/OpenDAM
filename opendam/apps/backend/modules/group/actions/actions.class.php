@@ -182,8 +182,9 @@ class groupActions extends sfActions
 	
 			if($this->getRequestParameter("iframe") == 1)
 			{
-				$this->uri = '/';
+				$this->uri = url_for("@homepage", true);
 				$this->setTemplate("thankyouUri");
+
 				return sfView::SUCCESS;
 			}
 	
@@ -620,7 +621,7 @@ class groupActions extends sfActions
 	
 				$group->save();
 	
-				$this->uri = 'group/show?id='.$group->getId();
+				$this->uri = url_for('group/show?id='.$group->getId(), true);
 				$this->setTemplate("thankyouUri");
 			}
 		}
